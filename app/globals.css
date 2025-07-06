@@ -76,6 +76,75 @@
   --sidebar-ring: oklch(0.645 0.246 16.439);
 }
 
+/* Custom animations for portfolio */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    background-position: -500% 0;
+  }
+  100% {
+    background-position: 500% 0;
+  }
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-text-shimmer {
+  animation: text-shimmer 8s linear infinite;
+  background-size: 400% 100%;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 3.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+/* Custom style for silver gradient text */
+.text-silver-100 {
+  color: rgb(243, 244, 246);
+}
+
+.text-silver-300 {
+  color: rgb(209, 213, 219);
+}
+
+.text-silver-400 {
+  color: rgb(156, 163, 175);
+}
+
 .dark {
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);
