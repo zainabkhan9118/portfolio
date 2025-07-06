@@ -172,12 +172,12 @@ function Slider<T>({ items, renderItem, className = "" }: SliderProps<T>) {
         {renderItem(items[index], index)}
       </div>
       <div className="absolute inset-y-0 left-0 flex items-center">
-        <Button variant="ghost" size="icon" onClick={prev} className="neon-glow">
+        <Button variant="ghost" size="icon" onClick={prev} className="">
           &#8592;
         </Button>
       </div>
       <div className="absolute inset-y-0 right-0 flex items-center">
-        <Button variant="ghost" size="icon" onClick={next} className="neon-glow">
+        <Button variant="ghost" size="icon" onClick={next} className="">
           &#8594;
         </Button>
       </div>
@@ -187,53 +187,52 @@ function Slider<T>({ items, renderItem, className = "" }: SliderProps<T>) {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#2c5364] to-[#232526] text-white futuristic-bg">
+    <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] to-[#f1f5f2] text-gray-900">
       {/* Futuristic Glassmorphic Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-[90vh] py-16">
-        <div className="absolute inset-0 animate-pulse bg-gradient-to-tr from-cyan-500/10 via-fuchsia-500/10 to-blue-500/10 blur-2xl" />
-        <div className="relative z-10 rounded-3xl glassmorph border-2 border-cyan-400/30 shadow-2xl p-10 max-w-3xl w-full flex flex-col items-center neon-border">
+        <div className="absolute inset-0 bg-gradient-to-tr from-white/60 to-emerald-100/60 blur-xl" />
+        <div className="relative z-10 rounded-3xl bg-white/80 border border-gray-200 shadow-xl p-10 max-w-3xl w-full flex flex-col items-center">
           <div className="relative mb-6">
-            <Image src="/me.png" alt="Zainab Iqbal" width={160} height={160} className="rounded-full border-4 border-cyan-400/60 shadow-xl neon-glow" />
-            {/* Removed FUTURIST label */}
+            <Image src="/me.png" alt="Zainab Iqbal" width={160} height={160} className="rounded-full border-4 border-gray-200 shadow-lg" />
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent drop-shadow-neon mb-4 animate-fade-in">Zainab Iqbal</h1>
-          <p className="text-xl md:text-2xl text-cyan-100 mb-6 animate-fade-in delay-200 text-center">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-emerald-700 mb-4 animate-fade-in">Zainab Iqbal</h1>
+          <p className="text-xl md:text-2xl text-gray-700 mb-6 animate-fade-in delay-200 text-center">
             Senior Frontend Developer | React.js Expert | Next.js | Full-Stack Specialist
           </p>
-          <div className="text-cyan-200 text-center text-base mb-6 animate-fade-in delay-300">
+          <div className="text-gray-500 text-center text-base mb-6 animate-fade-in delay-300">
             zainabkhan3473@gmail.com | (+92) 311 0522349 <br />
-            <a href="https://github.com/zainabkhan9118" className="underline neon-text-gradient" target="_blank" rel="noopener noreferrer">GitHub: zainabkhan9118</a> | Abbottabad, Pakistan | DOB: 20 Jan 2002
+            <a href="https://github.com/zainabkhan9118" className="underline text-blue-600 hover:text-blue-800" target="_blank" rel="noopener noreferrer">GitHub: zainabkhan9118</a> | Abbottabad, Pakistan | DOB: 20 Jan 2002
           </div>
           <div className="flex gap-4 mb-6 animate-fade-in delay-300">
             <a href="mailto:zainabkhan3473@gmail.com" tabIndex={-1}>
-              <Button size="lg" className="neon-glow bg-gradient-to-r from-cyan-500 to-fuchsia-500 text-white shadow-xl">
+              <Button size="lg" className="bg-emerald-600 text-white hover:bg-emerald-700 shadow-md">
                 <Mail className="w-5 h-5 mr-2" /> Contact
               </Button>
             </a>
             <a href="/resume" target="_blank" rel="noopener noreferrer" className="inline-block">
-              <Button variant="outline" size="lg" className="neon-glow border-cyan-400 text-black">
+              <Button variant="outline" size="lg" className="border-emerald-600 text-emerald-700 hover:bg-emerald-50">
                 <Download className="w-5 h-5 mr-2" />Resume
               </Button>
             </a>
           </div>
           <div className="flex gap-3 animate-fade-in delay-500">
-            <a href="https://github.com/zainabkhan9118" className="neon-icon" target="_blank" rel="noopener noreferrer"><Github className="w-6 h-6 text-cyan-300" /></a>
-            <a href="https://www.linkedin.com/in/zainab-iqbal-3a0216241" className="neon-icon" target="_blank" rel="noopener noreferrer"><Linkedin className="w-6 h-6" /></a>
-            <a href="https://www.instagram.com/zainabkhan9118" className="neon-icon" target="_blank" rel="noopener noreferrer"><Instagram className="w-6 h-6" /></a>
+            <a href="https://github.com/zainabkhan9118" className="text-gray-500 hover:text-emerald-700" target="_blank" rel="noopener noreferrer"><Github className="w-6 h-6" /></a>
+            <a href="https://www.linkedin.com/in/zainab-iqbal-3a0216241" className="text-gray-500 hover:text-emerald-700" target="_blank" rel="noopener noreferrer"><Linkedin className="w-6 h-6" /></a>
+            <a href="https://www.instagram.com/zainabkhan9118" className="text-gray-500 hover:text-pink-600" target="_blank" rel="noopener noreferrer"><Instagram className="w-6 h-6" /></a>
           </div>
         </div>
       </section>
 
       {/* Skills - Neon Cards */}
       <section className="py-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-widest neon-text">Tech Stack</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-widest text-gray-900">Tech Stack</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {skills.map((cat, i) => (
-            <div key={cat.title} className={`rounded-2xl glassmorph border-2 shadow-xl p-6 flex flex-col items-center neon-border ${i%2===0?'animate-float':''}`}> 
-              <cat.icon className="w-10 h-10 mb-3 neon-glow" />
-              <h3 className="text-xl font-bold mb-2 neon-text-gradient">{cat.title}</h3>
+          {skills.map((cat) => (
+            <div key={cat.title} className="rounded-2xl bg-white/90 border border-gray-200 shadow p-6 flex flex-col items-center">
+              <cat.icon className="w-10 h-10 mb-3 text-emerald-600" />
+              <h3 className="text-xl font-bold mb-2 text-gray-800">{cat.title}</h3>
               <div className="flex flex-wrap gap-2 justify-center">
-                {cat.skills.map((s) => <Badge key={s} className="neon-badge">{s}</Badge>)}
+                {cat.skills.map((s) => <Badge key={s} className="bg-emerald-50 text-emerald-700 border border-emerald-100">{s}</Badge>)}
               </div>
             </div>
           ))}
@@ -241,31 +240,30 @@ export default function Home() {
       </section>
 
       {/* Projects - Futuristic Slider */}
-      <section className="py-16 bg-gradient-to-br from-[#232526]/60 to-[#0f2027]/80">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-widest neon-text">Projects</h2>
+      <section className="py-16 bg-gradient-to-br from-white/80 to-emerald-50/80">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-widest text-gray-900">Projects</h2>
         <div className="max-w-3xl mx-auto">
           <Slider
             items={projects}
             renderItem={(project) => (
-              <Card className="glassmorph border-2 neon-border shadow-2xl p-8 animate-fade-in">
+              <Card className="bg-white/90 border border-gray-200 shadow p-8 animate-fade-in">
                 <CardHeader>
                   <div className="flex justify-between items-center">
-                    <CardTitle className="text-2xl neon-text-gradient">{project.title}</CardTitle>
-                    <Badge variant="secondary" className="neon-badge">{project.category}</Badge>
+                    <CardTitle className="text-2xl text-emerald-700">{project.title}</CardTitle>
+                    <Badge variant="secondary" className="bg-emerald-50 text-emerald-700 border border-emerald-100">{project.category}</Badge>
                   </div>
-                  <CardDescription>{project.subtitle}</CardDescription>
+                  <CardDescription className="text-gray-500">{project.subtitle}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="mb-4 text-cyan-100">{project.description}</p>
+                  <p className="mb-4 text-gray-700">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech: string) => <Badge key={tech} className="neon-badge">{tech}</Badge>)}
+                    {project.technologies.map((tech: string) => <Badge key={tech} className="bg-emerald-50 text-emerald-700 border border-emerald-100">{tech}</Badge>)}
                   </div>
                   <ul className="mb-4 space-y-1">
-                    {project.features.map((f: string) => <li key={f} className="flex items-center gap-2 text-cyan-200"><ArrowRight className="w-4 h-4 neon-glow" />{f}</li>)}
+                    {project.features.map((f: string) => <li key={f} className="flex items-center gap-2 text-gray-600"><ArrowRight className="w-4 h-4 text-emerald-400" />{f}</li>)}
                   </ul>
                   <div className="flex gap-4 mt-4">
-                    {/* <Button asChild variant="outline" className="neon-glow"><a href={project.github} target="_blank"><Github className="w-5 h-5 mr-1" />Code</a></Button> */}
-                    <Button asChild variant="default" className="neon-glow"><a href={project.link} target="_blank"><ExternalLink className="w-5 h-5 mr-1" />Demo</a></Button>
+                    <Button asChild variant="default" className="bg-emerald-600 text-white hover:bg-emerald-700"><a href={project.link} target="_blank"><ExternalLink className="w-5 h-5 mr-1" />Demo</a></Button>
                   </div>
                 </CardContent>
               </Card>
@@ -277,37 +275,37 @@ export default function Home() {
       {/* Achievements - Neon Stat Cards */}
       <section className="py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-          {achievements.map((a, i) => (
-            <div key={a.label} className="glassmorph border-2 neon-border shadow-xl p-6 flex flex-col items-center animate-float">
-              <a.icon className="w-10 h-10 mb-2 neon-glow" />
-              <div className="text-3xl font-extrabold neon-text-gradient">{a.count}</div>
-              <div className="text-cyan-200 text-sm mt-1">{a.label}</div>
+          {achievements.map((a) => (
+            <div key={a.label} className="bg-white/90 border border-gray-200 shadow p-6 flex flex-col items-center">
+              <a.icon className="w-10 h-10 mb-2 text-emerald-600" />
+              <div className="text-3xl font-extrabold text-emerald-700">{a.count}</div>
+              <div className="text-gray-500 text-sm mt-1">{a.label}</div>
             </div>
           ))}
         </div>
       </section>
 
       {/* Testimonials - Futuristic Slider */}
-      <section className="py-16 bg-gradient-to-br from-[#232526]/60 to-[#0f2027]/80">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-widest neon-text">Testimonials</h2>
+      <section className="py-16 bg-gradient-to-br from-white/80 to-emerald-50/80">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 tracking-widest text-gray-900">Testimonials</h2>
         <div className="max-w-2xl mx-auto">
           <Slider
             items={testimonials}
             renderItem={(t) => (
-              <Card className="glassmorph border-2 neon-border shadow-2xl p-8 animate-fade-in">
+              <Card className="bg-white/90 border border-gray-200 shadow p-8 animate-fade-in">
                 <CardContent>
                   <div className="flex items-center gap-4 mb-4">
-                    <Avatar className="w-12 h-12 neon-glow">
-                      <AvatarFallback className="bg-cyan-600 text-white font-bold">{t.avatar}</AvatarFallback>
+                    <Avatar className="w-12 h-12 bg-emerald-100">
+                      <AvatarFallback className="bg-emerald-600 text-white font-bold">{t.avatar}</AvatarFallback>
                     </Avatar>
                     <div>
-                      <div className="font-bold neon-text-gradient">{t.name}</div>
-                      <div className="text-cyan-200 text-xs">{t.role} @ {t.company}</div>
+                      <div className="font-bold text-emerald-700">{t.name}</div>
+                      <div className="text-gray-500 text-xs">{t.role} @ {t.company}</div>
                     </div>
                   </div>
-                  <div className="italic text-cyan-100 mb-2">"{t.content}"</div>
+                  <div className="italic text-gray-700 mb-2">"{t.content}"</div>
                   <div className="flex gap-1">
-                    {[...Array(t.rating)].map((_, i) => <Star key={i} className="w-4 h-4 fill-cyan-400 text-cyan-400 neon-glow" />)}
+                    {[...Array(t.rating)].map((_, i) => <Star key={i} className="w-4 h-4 fill-emerald-400 text-emerald-400" />)}
                   </div>
                 </CardContent>
               </Card>
@@ -318,23 +316,12 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-12 text-center">
-        <p className="text-cyan-200 mb-2">© 2025 Zainab Iqbal. Crafted with <span className="text-fuchsia-400">❤️</span> using Next.js & Tailwind CSS.</p>
-        <p className="text-xs text-cyan-600">Futuristic Portfolio. All rights reserved.</p>
+        <p className="text-gray-500 mb-2">© 2025 Zainab Iqbal. Crafted with <span className="text-emerald-600">❤️</span> using Next.js & Tailwind CSS.</p>
+        <p className="text-xs text-gray-400">Professional Portfolio. All rights reserved.</p>
       </footer>
 
-      {/* Futuristic/Neon/Glassmorph CSS */}
+      {/* Minimal Professional Animations */}
       <style jsx global>{`
-        .futuristic-bg { background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%); }
-        .glassmorph { background: rgba(30,40,60,0.7); backdrop-filter: blur(16px) saturate(180%); }
-        .neon-border { box-shadow: 0 0 16px 2px #0ff, 0 0 32px 4px #f0f, 0 0 2px 1px #fff2; border-image: linear-gradient(90deg,#0ff,#f0f,#0ff) 1; }
-        .neon-glow { filter: drop-shadow(0 0 8px #0ff) drop-shadow(0 0 16px #f0f); }
-        .neon-badge { background: linear-gradient(90deg,#0ff,#f0f,#0ff); color: #fff; border: none; box-shadow: 0 0 8px #0ff; }
-        .neon-text { text-shadow: 0 0 8px #0ff, 0 0 16px #f0f; }
-        .neon-text-gradient { background: linear-gradient(90deg,#0ff,#f0f,#0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .neon-icon { color: #0ff; filter: drop-shadow(0 0 8px #0ff); transition: transform .2s; }
-        .neon-icon:hover { color: #f0f; transform: scale(1.2) rotate(8deg); }
-        .animate-float { animation: float 3s ease-in-out infinite alternate; }
-        @keyframes float { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
         .animate-fade-in { animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1) both; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(40px);} to { opacity: 1; transform: none; } }
       `}</style>
