@@ -1,17 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { 
+  useState 
+} from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { 
   Mail, Github, Linkedin, Instagram, ArrowRight, Star, Users, Award, 
-  Code2, Calendar, MapPin, MessageCircle, ExternalLink, Play, 
-  Smartphone, Server, Monitor, Settings, Database, Rocket, Globe, Download 
+  Code2, ExternalLink, Smartphone, Server, Monitor, Settings, Database, Download 
 } from "lucide-react";
 import Image from "next/image";
 
@@ -248,7 +246,7 @@ export default function Home() {
         <div className="max-w-3xl mx-auto">
           <Slider
             items={projects}
-            renderItem={(project, idx) => (
+            renderItem={(project) => (
               <Card className="glassmorph border-2 neon-border shadow-2xl p-8 animate-fade-in">
                 <CardHeader>
                   <div className="flex justify-between items-center">
@@ -263,7 +261,7 @@ export default function Home() {
                     {project.technologies.map((tech: string) => <Badge key={tech} className="neon-badge">{tech}</Badge>)}
                   </div>
                   <ul className="mb-4 space-y-1">
-                    {project.features.map((f: string, i: number) => <li key={i} className="flex items-center gap-2 text-cyan-200"><ArrowRight className="w-4 h-4 neon-glow" />{f}</li>)}
+                    {project.features.map((f: string) => <li key={f} className="flex items-center gap-2 text-cyan-200"><ArrowRight className="w-4 h-4 neon-glow" />{f}</li>)}
                   </ul>
                   <div className="flex gap-4 mt-4">
                     {/* <Button asChild variant="outline" className="neon-glow"><a href={project.github} target="_blank"><Github className="w-5 h-5 mr-1" />Code</a></Button> */}
@@ -295,7 +293,7 @@ export default function Home() {
         <div className="max-w-2xl mx-auto">
           <Slider
             items={testimonials}
-            renderItem={(t, idx) => (
+            renderItem={(t) => (
               <Card className="glassmorph border-2 neon-border shadow-2xl p-8 animate-fade-in">
                 <CardContent>
                   <div className="flex items-center gap-4 mb-4">
@@ -309,7 +307,7 @@ export default function Home() {
                   </div>
                   <div className="italic text-cyan-100 mb-2">"{t.content}"</div>
                   <div className="flex gap-1">
-                    {[...Array(t.rating)].map((_, i: number) => <Star key={i} className="w-4 h-4 fill-cyan-400 text-cyan-400 neon-glow" />)}
+                    {[...Array(t.rating)].map((_, i) => <Star key={i} className="w-4 h-4 fill-cyan-400 text-cyan-400 neon-glow" />)}
                   </div>
                 </CardContent>
               </Card>

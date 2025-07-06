@@ -72,7 +72,7 @@ export default function Resume() {
         <section className="mb-6">
           <h2 className="text-xl font-bold neon-text-gradient mb-2">Education</h2>
           <ul className="text-cyan-100 text-sm">
-            <li><b>COMSATS University Islamabad, Abbottabad Campus.</b> BS Computer Science Mar 2022 – Mar 2026</li>
+            <li><b>COMSATS University Islamabad, Abbottabad Campus.</b> BS Computer Science Mar 2022 – Mar 2026<br /><span className="text-cyan-300">CGPA: 3.94</span></li>
             <li><b>Army Burnhall College for Girls, Abbottabad.</b> FSc (Pre-Medical) Graduated in 2020</li>
           </ul>
         </section>
