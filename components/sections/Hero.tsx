@@ -9,6 +9,12 @@ import { useState } from "react";
 import { Typewriter } from "@/components/shared/Typewriter";
 import TerminalOverlay from "@/components/shared/TerminalOverlay";
 
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger
+} from "@/components/ui/hover-card";
+
 export default function Hero() {
   const [terminalOpen, setTerminalOpen] = useState(false);
   return (
@@ -21,30 +27,69 @@ export default function Hero() {
     >
       <div className="max-w-6xl w-full">
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="relative group">
-            {/* Silvery glow effect with moving gradients */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-white via-silver-400 to-silver-600 rounded-full opacity-80 blur-xl group-hover:opacity-100 transition-all duration-700 animate-gradient-shift"></div>
-            <div className="absolute -inset-1 bg-gradient-to-r from-white via-silver-300 to-silver-500 rounded-full opacity-50 blur-md group-hover:opacity-70 transition-all duration-1000 animate-pulse"></div>
-            <div className="absolute inset-0 bg-black rounded-full"></div>
-            <div className="relative">
-              <Image 
-                src="/me.png" 
-                alt="Zainab Iqbal" 
-                width={380} 
-                height={380} 
-                className="rounded-full border-2 border-white/30 object-cover shadow-2xl p-1"
-                style={{ filter: "contrast(1.1) brightness(1.1)" }}
-              />
-              
-              {/* Floating elements */}
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-silver-300 to-white rounded-full flex items-center justify-center animate-float shadow-lg shadow-white/20">
-                <Code2 className="w-4 h-4 text-gray-900" />
+          <HoverCard openDelay={300} closeDelay={200}>
+            <HoverCardTrigger asChild>
+              <div className="relative group cursor-pointer">
+                {/* Silvery glow effect with moving gradients */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-white via-silver-400 to-silver-600 rounded-full opacity-80 blur-xl group-hover:opacity-100 transition-all duration-700 animate-gradient-shift"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-white via-silver-300 to-silver-500 rounded-full opacity-50 blur-md group-hover:opacity-70 transition-all duration-1000 animate-pulse"></div>
+                <div className="absolute inset-0 bg-black rounded-full"></div>
+                <div className="relative">
+                  <Image 
+                    src="/me.png" 
+                    alt="Zainab Iqbal" 
+                    width={380} 
+                    height={380} 
+                    className="rounded-full border-2 border-white/30 object-cover shadow-2xl p-1"
+                    style={{ filter: "contrast(1.1) brightness(1.1)" }}
+                  />
+                  
+                  {/* Floating elements */}
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-silver-300 to-white rounded-full flex items-center justify-center animate-float shadow-lg shadow-white/20">
+                    <Code2 className="w-4 h-4 text-gray-900" />
+                  </div>
+                  <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-gradient-to-r from-silver-500 to-white rounded-full flex items-center justify-center animate-float-delayed shadow-lg shadow-white/20">
+                    <Server className="w-4 h-4 text-gray-900" />
+                  </div>
+                </div>
               </div>
-              <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-gradient-to-r from-silver-500 to-white rounded-full flex items-center justify-center animate-float-delayed shadow-lg shadow-white/20">
-                <Server className="w-4 h-4 text-gray-900" />
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80 bg-black/95 border border-white/20 text-white p-5 backdrop-blur-xl shadow-2xl shadow-purple-500/20">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20">
+                    <Image 
+                      src="/me.png" 
+                      alt="Zainab Iqbal" 
+                      width={48} 
+                      height={48} 
+                      className="object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white">Zainab Iqbal</h3>
+                    <p className="text-silver-400 text-xs">Full-Stack Developer</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-2 border-t border-white/10 pt-3">
+                  <p className="text-sm text-silver-300">
+                    "I think in code and dream in designs. When I'm not building websites, you might find me solving puzzles or exploring new tech."
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    <span className="text-xs bg-blue-500/20 text-blue-300 rounded-full px-2 py-0.5">React</span>
+                    <span className="text-xs bg-purple-500/20 text-purple-300 rounded-full px-2 py-0.5">Next.js</span>
+                    <span className="text-xs bg-teal-500/20 text-teal-300 rounded-full px-2 py-0.5">Full-Stack</span>
+                  </div>
+                </div>
+                
+                <div className="text-xs text-silver-400 border-t border-white/10 pt-3">
+                  <span className="block mb-1">Fun fact: I wrote my first line of code when I was 12 years old!</span>
+                  <span className="block">Daily coffee intake: ☕☕☕</span>
+                </div>
               </div>
-            </div>
-          </div>
+            </HoverCardContent>
+          </HoverCard>
           
           <div className="flex-1">
             <div className="mb-6 relative">

@@ -2,8 +2,13 @@
 
 
 import { motion } from "framer-motion";
-import { Award, Code2, Users } from "lucide-react";
+import { Award, Code2, Users, Sparkles, Coffee, Zap } from "lucide-react";
 import { Typewriter } from "@/components/shared/Typewriter";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger
+} from "@/components/ui/hover-card";
 
 export default function About() {
   return (
@@ -82,35 +87,100 @@ export default function About() {
               <div className="absolute -inset-2 bg-gradient-to-r from-silver-500/30 to-white/30 rounded-lg blur-lg opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
               <div className="relative bg-gray-900 border border-gray-800 group-hover:border-silver-700 transition-all duration-700 rounded-lg p-6">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
-                      <Award className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-white">Professional Journey</h3>
-                      <p className="text-silver-400 text-sm">2 years of expertise</p>
-                    </div>
-                  </div>
+                  <HoverCard openDelay={200} closeDelay={100}>
+                    <HoverCardTrigger asChild>
+                      <div className="flex items-center gap-3 cursor-pointer">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
+                          <Award className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-white">Professional Journey</h3>
+                          <p className="text-silver-400 text-sm">2 years of expertise</p>
+                        </div>
+                      </div>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-72 bg-black/95 border border-white/20 text-white p-4 backdrop-blur-xl shadow-xl">
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-bold flex items-center gap-1">
+                            <Sparkles className="w-4 h-4 text-yellow-400" />
+                            Behind the Code
+                          </h4>
+                          <span className="text-xs bg-purple-500/30 text-purple-300 px-2 py-0.5 rounded-full">Fun Fact</span>
+                        </div>
+                        <p className="text-sm text-silver-300">
+                          Once debugged code for 16 hours straight. The bug? A missing semicolon. That's when I learned coffee is a developer's best friend!
+                        </p>
+                        <p className="text-xs italic mt-2 text-silver-400">
+                          "In JavaScript, there are no mistakes. Just happy little semicolons waiting to be found."
+                        </p>
+                      </div>
+                    </HoverCardContent>
+                  </HoverCard>
                   
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-teal-500 flex items-center justify-center">
-                      <Code2 className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-white">Technical Mastery</h3>
-                      <p className="text-silver-400 text-sm">Frontend & Full-Stack</p>
-                    </div>
-                  </div>
+                  <HoverCard openDelay={200} closeDelay={100}>
+                    <HoverCardTrigger asChild>
+                      <div className="flex items-center gap-3 cursor-pointer">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-teal-500 flex items-center justify-center">
+                          <Code2 className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-white">Technical Mastery</h3>
+                          <p className="text-silver-400 text-sm">Frontend & Full-Stack</p>
+                        </div>
+                      </div>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-72 bg-black/95 border border-white/20 text-white p-4 backdrop-blur-xl shadow-xl">
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-bold flex items-center gap-1">
+                            <Coffee className="w-4 h-4 text-cyan-400" />
+                            Code Confession
+                          </h4>
+                          <span className="text-xs bg-cyan-500/30 text-cyan-300 px-2 py-0.5 rounded-full">Secret</span>
+                        </div>
+                        <p className="text-sm text-silver-300">
+                          I speak 9 programming languages but sometimes still talk to my computer hoping it will understand what I want without coding it.
+                        </p>
+                        <div className="pt-2 flex gap-1 flex-wrap">
+                          <span className="text-xs bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full">React</span>
+                          <span className="text-xs bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded-full">Next.js</span>
+                          <span className="text-xs bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full">TypeScript</span>
+                        </div>
+                      </div>
+                    </HoverCardContent>
+                  </HoverCard>
                   
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-500 flex items-center justify-center">
-                      <Users className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-white">Collaborative Approach</h3>
-                      <p className="text-silver-400 text-sm">Team-oriented developer</p>
-                    </div>
-                  </div>
+                  <HoverCard openDelay={200} closeDelay={100}>
+                    <HoverCardTrigger asChild>
+                      <div className="flex items-center gap-3 cursor-pointer">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-500 flex items-center justify-center">
+                          <Users className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-white">Collaborative Approach</h3>
+                          <p className="text-silver-400 text-sm">Team-oriented developer</p>
+                        </div>
+                      </div>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-72 bg-black/95 border border-white/20 text-white p-4 backdrop-blur-xl shadow-xl">
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-bold flex items-center gap-1">
+                            <Zap className="w-4 h-4 text-yellow-500" />
+                            Team Tactics
+                          </h4>
+                          <span className="text-xs bg-fuchsia-500/30 text-fuchsia-300 px-2 py-0.5 rounded-full">Superpower</span>
+                        </div>
+                        <p className="text-sm text-silver-300">
+                          I turn merge conflicts into opportunities for team bonding. Nothing brings people together like fixing git disasters at 4:59 PM on a Friday!
+                        </p>
+                        <div className="pt-2 border-t border-white/10">
+                          <p className="text-xs text-silver-400 italic">"My code documentation is so good, other developers have been known to shed tears of joy."</p>
+                        </div>
+                      </div>
+                    </HoverCardContent>
+                  </HoverCard>
                 </div>
               </div>
             </div>
