@@ -20,11 +20,11 @@ export function Typewriter({ text, delay = 100 }: TypewriterProps) {
       return () => clearTimeout(timeout);
     } else if (text.length > 0) {
       // Restart after 3 seconds
-      const restartTimeout = setTimeout(() => {
-        setCurrentText("");
-        setCurrentIndex(0);
-      }, 3000);
-      return () => clearTimeout(restartTimeout);
+      // const restartTimeout = setTimeout(() => {
+      //   setCurrentText("");
+      //   setCurrentIndex(0);
+      // },);
+      // return () => clearTimeout(restartTimeout);
     }
   }, [currentIndex, delay, text]);
 
