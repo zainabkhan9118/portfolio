@@ -1,11 +1,11 @@
 "use client";
 
-
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Users, Star } from "lucide-react";
+import { ExternalLink, Github, Users, Star, CheckCircle } from "lucide-react";
 import { projects } from "@/data/projects";
+import { Badge } from "../ui/badge";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 
 export default function Projects() {
   const [activeProject, setActiveProject] = useState(0);
@@ -53,7 +53,7 @@ export default function Projects() {
         </div>
 
         {/* Project Slider */}
-        <div className="relative h-[700px] overflow-hidden">
+        <div className="relative h-[550px] md:h-[600px] overflow-hidden">
           {/* Project Cards */}
           <div className="relative h-full w-full">
             {projects.map((project, index) => (
@@ -69,146 +69,124 @@ export default function Projects() {
               >
                 <div className="h-full flex flex-col md:flex-row gap-10 items-center">
                   {/* Project Info */}
-                  <div className="w-full md:w-1/2">
-                    <div className="mb-4 flex items-center">
-                      <Badge className="bg-gradient-to-r from-gray-800 to-gray-900 text-silver-300 border border-silver-500/30 px-3 py-1 text-sm">
-                        {project.category}
-                      </Badge>
-                    </div>
-                    
-                    <h3 className="text-3xl md:text-4xl font-bold mb-3">
-                      <span className="bg-gradient-to-r from-white via-silver-200 to-white text-transparent bg-clip-text">
-                        {project.title}
-                      </span>
-                    </h3>
-                    
-                    <p className="text-xl text-silver-400 mb-2">{project.subtitle}</p>
-                    
-                    <div className="w-16 h-[2px] bg-gradient-to-r from-silver-500 to-white mb-6"></div>
-                    
-                    <p className="text-silver-300 mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
-                    
-                    {/* Features List */}
-                    <div className="mb-8">
-                      <h4 className="text-lg font-medium text-silver-200 mb-3">Key Features</h4>
-                      <ul className="space-y-2">
-                        {project.features?.map((feature, idx) => (
-                          <li key={idx} className="flex items-start gap-3">
-                            <div className="min-w-[20px] mt-1">
-                              <div className="w-[6px] h-[6px] rounded-full bg-gradient-to-r from-silver-400 to-white"></div>
-                            </div>
-                            <p className="text-silver-300 text-sm">{feature}</p>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    {/* Technologies */}
-                    <div className="mb-8">
-                      <h4 className="text-sm font-medium text-silver-200 mb-3">Technologies</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech) => (
-                          <Badge 
-                            key={tech} 
-                            variant="outline" 
-                            className="bg-gray-800/80 text-silver-300 border-silver-500/30 hover:border-white/50 transition-colors"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    {/* Stats & Button */}
-                    <div className="flex flex-wrap items-center gap-6">
-                      <div className="flex items-center gap-4 text-sm text-silver-400">
-                        <span className="flex items-center gap-1">
-                          <Users className="w-4 h-4" /> {project.stats.users}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Star className="w-4 h-4" /> {project.stats.rating}
-                        </span>
-                      </div>
+                  <div className="w-full md:w-3/5 lg:w-2/3">
+                    <Card className="bg-gray-900/80 border border-silver-500/20 shadow-xl h-full text-white max-h-[550px] overflow-hidden">
+                      <CardHeader>
+                        <Badge className="self-start mb-2 bg-gradient-to-r from-gray-800 to-gray-900 text-silver-300 border border-silver-500/30 px-3 py-1 text-sm">
+                          {project.category}
+                        </Badge>
+                        
+                        <CardTitle className="text-2xl md:text-4xl font-bold break-words">
+                          <span className="bg-gradient-to-r from-white via-silver-200 to-white text-transparent bg-clip-text">
+                            {project.title}
+                          </span>
+                        </CardTitle>
+                        
+                        <CardDescription className="text-lg md:text-xl text-silver-400">
+                          {project.subtitle}
+                        </CardDescription>
+                      </CardHeader>
                       
-                      <button 
-                        className="btn-shine inline-flex items-center px-5 py-2.5 rounded-md bg-white text-black font-medium hover:bg-silver-200 transition-all duration-300 shadow-md hover:shadow-lg border border-transparent hover:border-white/50"
-                        onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
-                      >
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        View Live
-                      </button>
-                      
-                      {/* {project.github && (
-                        <button 
-                          className="btn-shine inline-flex items-center px-5 py-2.5 rounded-md bg-black text-white font-medium hover:bg-gray-900 transition-all duration-300 border border-white/20 hover:border-white/40"
-                          onClick={() => window.open(project.github, '_blank', 'noopener,noreferrer')}
-                        >
-                          <Github className="w-4 h-4 mr-2" />
-                          GitHub
-                        </button>
-                      )} */}
-                    </div>
-                  </div>
-                  
-                  {/* Project Visual */}
-                  <div className="w-full md:w-1/2">
-                    <div className="relative group aspect-video rounded-lg overflow-hidden border border-silver-500/30 shadow-2xl">
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-silver-400/5 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                      
-                      {/* Project Mockup/Frame */}
-                      <div className="w-full h-full bg-gray-900 rounded-lg overflow-hidden p-1">
-                        <div className="w-full h-[22px] bg-gray-800 rounded-t-md flex items-center px-3 mb-1">
-                          <div className="flex gap-1.5">
-                            <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-                            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-                            <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-                          </div>
+                      <CardContent className="space-y-6 overflow-y-auto pr-4 max-h-[350px] no-scrollbar">
+                        <p className="text-silver-300 leading-relaxed text-sm md:text-base break-words">
+                          {project.description}
+                        </p>
+                        
+                        {/* Features List */}
+                        <div>
+                          <h4 className="text-lg font-medium text-silver-200 mb-3">Key Features</h4>
+                          <ul className="space-y-2">
+                            {project.features?.map((feature, idx) => (
+                              <li key={idx} className="flex items-start gap-3">
+                                <CheckCircle className="h-5 w-5 text-white/40 shrink-0 mt-0.5" />
+                                <p className="text-silver-300 text-sm">{feature}</p>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                         
-                        <div className="relative w-full aspect-video overflow-hidden bg-gray-950 rounded-b-md">
-                          {/* Project Screenshot/Mockup (placeholder) */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-gray-900 to-black opacity-70"></div>
-                          
-                          {/* Abstract UI Elements */}
-                          <div className="absolute inset-0 flex flex-col p-4">
-                            <div className="w-1/2 h-2 bg-gray-700 rounded-full mb-3"></div>
-                            <div className="w-3/4 h-2 bg-gray-800 rounded-full mb-6"></div>
-                            
-                            <div className="grid grid-cols-2 gap-3 mb-4">
-                              <div className="h-16 rounded-md bg-gray-800/70"></div>
-                              <div className="h-16 rounded-md bg-gray-800/40"></div>
-                            </div>
-                            
-                            <div className="flex-1 grid grid-cols-3 gap-2">
-                              <div className="col-span-2 rounded-md bg-gray-800/50"></div>
-                              <div className="rounded-md bg-gray-800/30"></div>
-                            </div>
-                            
-                            {/* Animated Shine Effect */}
-                            <div className="absolute inset-0">
-                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shine" style={{ backgroundSize: '200% 100%' }}></div>
-                            </div>
+                        {/* Technologies */}
+                        <div>
+                          <h4 className="text-sm font-medium text-silver-200 mb-3">Technologies</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech) => (
+                              <Badge 
+                                key={tech} 
+                                variant="outline" 
+                                className="bg-gray-800/80 text-silver-300 border-silver-500/30 hover:border-white/50 transition-colors"
+                              >
+                                {tech}
+                              </Badge>
+                            ))}
                           </div>
                         </div>
+                      </CardContent>
+                      
+                      <CardFooter className="flex flex-wrap items-center gap-6 sticky bottom-0 bg-gray-900/95 backdrop-blur-sm border-t border-silver-500/20">
+                        <div className="flex items-center gap-4 text-sm text-silver-400">
+                          <span className="flex items-center gap-1">
+                            <Users className="w-4 h-4" /> {project.stats.users}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Star className="w-4 h-4" /> {project.stats.rating}
+                          </span>
+                        </div>
+                        
+                        <div className="flex gap-3">
+                          <button 
+                            className="btn-shine inline-flex items-center px-5 py-2.5 rounded-md bg-white text-black font-medium hover:bg-silver-200 transition-all duration-300 shadow-md hover:shadow-lg border border-transparent hover:border-white/50"
+                            onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
+                          >
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            View Live
+                          </button>
+                          
+                          {/* <button 
+                            className="inline-flex items-center px-4 py-2.5 rounded-md bg-transparent text-white font-medium hover:bg-gray-800 transition-all duration-300 shadow-md hover:shadow-lg border border-silver-500/30 hover:border-white/50"
+                            onClick={() => window.open(project.github, '_blank', 'noopener,noreferrer')}
+                          >
+                            <Github className="w-4 h-4 mr-2" />
+                            Code
+                          </button> */}
+                        </div>
+                      </CardFooter>
+                    </Card>
+                  </div>
+                  
+                  {/* Navigation Pills */}
+                  <div className="w-full md:w-2/5 lg:w-1/3 flex items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-4">
+                      <div className="flex flex-wrap justify-center gap-3">
+                        {projects.map((project, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setActiveProject(idx)}
+                            className={`px-3 py-1.5 rounded-lg transition-all ${
+                              idx === activeProject 
+                                ? "bg-white text-black font-medium shadow-lg" 
+                                : "bg-gray-800/60 text-silver-400 hover:bg-gray-700/70 border border-silver-500/30"
+                            }`}
+                            aria-label={`Go to project ${idx + 1}`}
+                          >
+                            {project.title}
+                          </button>
+                        ))}
                       </div>
-                    </div>
-                    
-                    {/* Navigation Pills */}
-                    <div className="mt-6 flex justify-center gap-2">
-                      {projects.map((_, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => setActiveProject(idx)}
-                          className={`h-1.5 rounded-full transition-all ${
-                            idx === activeProject 
-                              ? "w-8 bg-white" 
-                              : "w-2 bg-gray-700 hover:bg-gray-600"
-                          }`}
-                          aria-label={`Go to project ${idx + 1}`}
-                        />
-                      ))}
+                      
+                      <div className="flex justify-center gap-2">
+                        {projects.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setActiveProject(idx)}
+                            className={`h-1.5 rounded-full transition-all ${
+                              idx === activeProject 
+                                ? "w-8 bg-white" 
+                                : "w-2 bg-gray-700 hover:bg-gray-600"
+                            }`}
+                            aria-label={`Go to project ${idx + 1}`}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -219,7 +197,7 @@ export default function Projects() {
           {/* Navigation Arrows */}
           <button 
             onClick={prevProject} 
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-white/10 transition-colors border border-white/10 hover:border-white/30 z-10"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-white/20 transition-colors border border-white/20 hover:border-white/50 z-10 shadow-lg"
             aria-label="Previous project"
           >
             <div className="relative w-5 h-5">
@@ -230,7 +208,7 @@ export default function Projects() {
           
           <button 
             onClick={nextProject} 
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-white/10 transition-colors border border-white/10 hover:border-white/30 z-10"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-white/20 transition-colors border border-white/20 hover:border-white/50 z-10 shadow-lg"
             aria-label="Next project"
           >
             <div className="relative w-5 h-5">

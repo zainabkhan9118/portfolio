@@ -2,10 +2,11 @@
 
 
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { testimonials } from "@/data/testimonials";
 import { useState } from "react";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 
 export default function Testimonials() {
   const [active, setActive] = useState(0);
@@ -45,7 +46,7 @@ export default function Testimonials() {
             <div className="w-20 h-1 bg-white/30 rounded-full"></div>
           </div>
         </div>
-        <div className="relative h-[340px] md:h-[300px]">
+        <div className="relative h-[380px] md:h-[300px]">
           {testimonials.map((testimonial, idx) => (
             <div
               key={testimonial.name}
@@ -57,25 +58,34 @@ export default function Testimonials() {
                   : "opacity-0 translate-x-full z-0"
               }`}
             >
-              <div className="bg-gradient-to-br from-black to-gray-900 border border-silver-500/20 p-8 rounded-xl shadow-lg flex flex-col h-full justify-between">
-                <div className="flex items-center gap-4 mb-6">
-                  <Avatar>
-                    <AvatarFallback className="bg-gradient-to-br from-silver-500 to-white text-gray-900 font-medium">
-                      {testimonial.avatar}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <h3 className="font-medium text-white text-lg">{testimonial.name}</h3>
-                    <p className="text-silver-400 text-sm">{testimonial.role}, {testimonial.company}</p>
+              <Card className="bg-gradient-to-br from-black to-gray-900 border border-silver-500/20 shadow-lg h-full text-white">
+                <CardHeader>
+                  <div className="flex flex-wrap items-center gap-4">
+                    <Avatar>
+                      <AvatarFallback className="bg-gradient-to-br from-silver-500 to-white text-gray-900 font-medium">
+                        {testimonial.avatar}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 min-w-[120px]">
+                      <CardTitle className="text-white">{testimonial.name}</CardTitle>
+                      <CardDescription className="text-silver-400">{testimonial.role}, {testimonial.company}</CardDescription>
+                    </div>
+                    <div className="flex">
+                      {Array.from({ length: testimonial.rating }).map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex ml-auto">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                    ))}
+                </CardHeader>
+                <CardContent>
+                  <div className="relative">
+                    <Quote className="absolute -left-1 -top-1 w-6 h-6 text-silver-500/20" />
+                    <p className="text-silver-300 italic leading-relaxed text-sm md:text-base break-words pl-5">
+                      {testimonial.content}
+                    </p>
                   </div>
-                </div>
-                <p className="text-silver-300 italic leading-relaxed text-lg">"{testimonial.content}"</p>
-              </div>
+                </CardContent>
+              </Card>
             </div>
           ))}
           {/* Navigation Arrows */}
