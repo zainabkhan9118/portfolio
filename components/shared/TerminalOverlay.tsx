@@ -32,7 +32,23 @@ export default function TerminalOverlay({ open, onClose, onLockSection }: { open
   ]);
   const [input, setInput] = useState("");
   const [locked, setLocked] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
+
+  // Handle viewport height changes (especially for mobile)
+  useEffect(() => {
+    const updateVH = () => {
+      setViewportHeight(window.innerHeight);
+    };
+    updateVH();
+    window.addEventListener('resize', updateVH);
+    window.addEventListener('orientationchange', updateVH);
+    return () => {
+      window.removeEventListener('resize', updateVH);
+      window.removeEventListener('orientationchange', updateVH);
+    };
+  }, []);
 
   useEffect(() => {
     if (open && inputRef.current) {
@@ -40,16 +56,12 @@ export default function TerminalOverlay({ open, onClose, onLockSection }: { open
     }
   }, [open]);
 
+  // Scroll to bottom when new lines are added
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  }, [lines]);
 
   const handleCommand = (cmd: string) => {
     const commandFull = cmd.trim().toLowerCase();
@@ -103,35 +115,57 @@ export default function TerminalOverlay({ open, onClose, onLockSection }: { open
   const handleInput = (e: React.FormEvent) => {
     e.preventDefault();
     if (locked) return;
-    setLines((prev) => [...prev, `> ${input}`]);
-    handleCommand(input);
+    
+    const trimmedInput = input.trim();
+    if (!trimmedInput) return;
+    
+    setLines((prev) => [...prev, `> ${trimmedInput}`]);
+    handleCommand(trimmedInput);
     setInput("");
+    
+    // Ensure input is focused after command (for mobile)
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
   };
 
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center">
-      <div className="w-full max-w-2xl mx-auto rounded-lg shadow-2xl border border-silver-700 bg-black p-6 relative">
-        <div className="font-mono text-green-400 text-base min-h-[320px] max-h-[60vh] overflow-y-auto mb-4 whitespace-pre-line">
+    <div 
+      className="fixed inset-0 z-[9999] bg-black/95 flex items-start md:items-center justify-center" 
+      style={{ height: `${viewportHeight}px` }}
+    >
+      <div className="w-full h-full md:h-auto max-w-2xl mx-auto rounded-lg shadow-2xl border border-silver-700 bg-black p-4 md:p-6 relative flex flex-col">
+        <div 
+          ref={terminalRef}
+          className="font-mono text-green-400 text-sm md:text-base flex-1 overflow-y-auto mb-4 whitespace-pre-line"
+          style={{ 
+            minHeight: '200px',
+            maxHeight: 'calc(100vh - 160px)',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
           {lines.map((line, i) => (
             <div key={i}>{line}</div>
           ))}
         </div>
-        <form onSubmit={handleInput} className="flex items-center">
+        <form onSubmit={handleInput} className="flex items-center sticky bottom-0 bg-black p-2">
           <span className="text-green-500 font-mono mr-2">&gt;</span>
           <input
             ref={inputRef}
-            className="flex-1 bg-transparent border-none outline-none text-green-300 font-mono text-base"
+            className="flex-1 bg-transparent border-none outline-none text-green-300 font-mono text-sm md:text-base w-full"
             value={input}
             onChange={e => setInput(e.target.value)}
             disabled={locked}
             autoComplete="off"
             spellCheck={false}
+            type="text"
+            enterKeyHint="send"
           />
         </form>
         <button
-          className="absolute top-2 right-2 text-silver-400 hover:text-white text-xl"
+          className="absolute top-2 right-2 text-silver-400 hover:text-white text-xl p-2"
           onClick={onClose}
           aria-label="Close terminal"
         >

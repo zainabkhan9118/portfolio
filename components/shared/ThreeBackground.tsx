@@ -5,168 +5,152 @@ import * as THREE from "three";
 import { gsap } from "gsap";
 
 export default function ThreeBackground() {
-  const mountRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    if (!mountRef.current) return;
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+  const particlesRef = useRef<THREE.Points | null>(null);
 
-    // Scene setup
+  useEffect(() => {
+    if (!canvasRef.current) return;
+
+    // Initialize scene
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    
+    sceneRef.current = scene;
+
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    camera.position.z = 5;
+    cameraRef.current = camera;
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvasRef.current,
+      alpha: true,
+      antialias: true,
+    });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
-    mountRef.current.appendChild(renderer.domElement);
-    
-    // Camera position
-    camera.position.z = 30;
-    
-    // Create particles
+    rendererRef.current = renderer;
+
+    // Create particles in a spiral pattern
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 1500;
+    const particleCount = 300;
+    const posArray = new Float32Array(particleCount * 3);
+    const colorArray = new Float32Array(particleCount * 3);
     
-    const posArray = new Float32Array(particlesCount * 3);
-    const scaleArray = new Float32Array(particlesCount);
-    
-    // Fill arrays with random positions and scales
-    for (let i = 0; i < particlesCount * 3; i += 3) {
-      // Position in a sphere
-      const radius = 25 + Math.random() * 10;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos((Math.random() * 2) - 1);
+    // Create particles in an elegant spiral pattern
+    for (let i = 0; i < particleCount * 3; i += 3) {
+      const angle = (i / 3) * 0.1;
+      const radius = Math.sqrt((i / 3)) * 0.1;
       
-      posArray[i] = radius * Math.sin(phi) * Math.cos(theta); // x
-      posArray[i + 1] = radius * Math.sin(phi) * Math.sin(theta); // y
-      posArray[i + 2] = radius * Math.cos(phi); // z
+      posArray[i] = Math.sin(angle) * radius * 5;     // x
+      posArray[i + 1] = Math.cos(angle) * radius * 5; // y
+      posArray[i + 2] = (Math.random() - 0.5) * 3;    // z
       
-      scaleArray[i/3] = Math.random() * 2;
+      // Beautiful gradient colors (purples to blues)
+      const hue = (i / (particleCount * 3)) * 0.3 + 0.5;
+      const color = new THREE.Color().setHSL(hue, 0.8, 0.5);
+      
+      colorArray[i] = color.r;
+      colorArray[i + 1] = color.g;
+      colorArray[i + 2] = color.b;
     }
-    
+
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    particlesGeometry.setAttribute('scale', new THREE.BufferAttribute(scaleArray, 1));
-    
-    // Material with custom shaders for better looking particles
-    const particlesMaterial = new THREE.ShaderMaterial({
-      vertexShader: `
-        attribute float scale;
-        varying vec3 vPosition;
-        
-        void main() {
-          vPosition = position;
-          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-          gl_PointSize = scale * (300.0 / -mvPosition.z);
-          gl_Position = projectionMatrix * mvPosition;
-        }
-      `,
-      fragmentShader: `
-        varying vec3 vPosition;
-        
-        void main() {
-          // Create a circular particle
-          float r = 0.0;
-          vec2 cxy = 2.0 * gl_PointCoord - 1.0;
-          r = dot(cxy, cxy);
-          if (r > 1.0) {
-            discard;
-          }
-          
-          // Gradient based on position
-          vec3 color = normalize(vPosition) * 0.5 + 0.5;
-          color = mix(vec3(1.0, 1.0, 1.0), color, 0.3); // Mix with white
-          
-          // Fade out at the edges
-          float alpha = 1.0 - r;
-          alpha = pow(alpha, 2.0); // Softer falloff
-          
-          gl_FragColor = vec4(color, alpha * 0.5);
-        }
-      `,
+    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.05,
       transparent: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
+      opacity: 0.7,
+      vertexColors: true,
+      blending: THREE.AdditiveBlending
     });
-    
+
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particles);
-    
-    // Mouse movement effect
-    const mouse = {
-      x: 0,
-      y: 0,
+    particlesRef.current = particles;
+
+    // GSAP Animations
+    gsap.fromTo(
+      particles.rotation,
+      { x: -0.2, y: -0.2, z: 0 },
+      { x: 0.2, y: 0.2, z: 0.1, duration: 20, ease: "none", repeat: -1, yoyo: true }
+    );
+
+    // Animation for particle size pulsing
+    gsap.fromTo(
+      particlesMaterial,
+      { size: 0.03 },
+      { size: 0.08, duration: 3, ease: "sine.inOut", repeat: -1, yoyo: true }
+    );
+
+    // Handle window resize
+    const handleResize = () => {
+      if (!canvasRef.current || !cameraRef.current || !rendererRef.current) return;
+      
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      cameraRef.current.aspect = width / height;
+      cameraRef.current.updateProjectionMatrix();
+      rendererRef.current.setSize(width, height);
     };
-    
+
+    window.addEventListener('resize', handleResize);
+
+    // Mouse move effect
     const handleMouseMove = (event: MouseEvent) => {
-      // Normalize mouse position (-1 to 1)
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      if (!particlesRef.current) return;
       
-      // Animate camera with GSAP
-      gsap.to(camera.position, {
-        x: mouse.x * 2,
-        y: mouse.y * 2,
-        duration: 2,
-        ease: "power2.out"
-      });
+      const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
       
-      // Also rotate particles slightly
-      gsap.to(particles.rotation, {
-        x: -mouse.y * 0.1,
-        y: mouse.x * 0.1,
+      gsap.to(particlesRef.current.rotation, {
+        x: mouseY * 0.1,
+        y: mouseX * 0.1,
         duration: 2,
-        ease: "power2.out"
+        ease: "power1.out"
       });
     };
-    
+
     window.addEventListener('mousemove', handleMouseMove);
-    
-    // Animation
+
+    // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
       
-      particles.rotation.y += 0.0005;
-      particles.rotation.z += 0.0002;
+      if (particlesRef.current) {
+        particlesRef.current.rotation.z += 0.001;
+      }
       
-      renderer.render(scene, camera);
+      rendererRef.current?.render(scene, camera);
     };
     
     animate();
-    
-    // Handle resize
-    const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    
-    // Initial animations with GSAP
-    gsap.from(particles.rotation, {
-      y: particles.rotation.y + Math.PI * 2,
-      duration: 2.5,
-      ease: "power3.out"
-    });
-    
-    gsap.from(camera.position, {
-      z: 100,
-      duration: 2.5,
-      ease: "power3.out"
-    });
-    
+
     // Cleanup
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
-      mountRef.current?.removeChild(renderer.domElement);
+      window.removeEventListener('mousemove', handleMouseMove);
+      
+      // Clean up Three.js resources
+      scene.remove(particles);
+      particlesGeometry.dispose();
+      particlesMaterial.dispose();
+      renderer.dispose();
     };
   }, []);
 
   return (
-    <div 
-      ref={mountRef} 
-      className="absolute inset-0 z-0 pointer-events-none" 
-      style={{ overflow: 'hidden' }}
+    <canvas 
+      ref={canvasRef} 
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 0 }}
     />
   );
 }
