@@ -2,7 +2,7 @@
 
 
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { testimonials } from "@/data/testimonials";
 import { useState } from "react";
@@ -89,26 +89,35 @@ export default function Testimonials() {
             </div>
           ))}
           {/* Navigation Arrows */}
-          <button
-            onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-white/10 transition-colors border border-white/10 hover:border-white/30 z-20"
+          <button 
+            onClick={prev} 
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-white/20 transition-colors border border-white/20 hover:border-white/50 z-20 shadow-lg hover-animate"
             aria-label="Previous testimonial"
           >
-            <div className="relative w-4 h-4">
-              <div className="absolute w-full h-0.5 bg-white top-1/2 -translate-y-1/2 -translate-x-[15%] rotate-45"></div>
-              <div className="absolute w-full h-0.5 bg-white top-1/2 -translate-y-1/2 -translate-x-[15%] -rotate-45"></div>
-            </div>
+            <ChevronLeft className="h-6 w-6" />
           </button>
-          <button
-            onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-white/10 transition-colors border border-white/10 hover:border-white/30 z-20"
+          
+          <button 
+            onClick={next} 
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-white/20 transition-colors border border-white/20 hover:border-white/50 z-20 shadow-lg hover-animate"
             aria-label="Next testimonial"
           >
-            <div className="relative w-4 h-4">
-              <div className="absolute w-full h-0.5 bg-white top-1/2 -translate-y-1/2 translate-x-[15%] -rotate-45"></div>
-              <div className="absolute w-full h-0.5 bg-white top-1/2 -translate-y-1/2 translate-x-[15%] rotate-45"></div>
-            </div>
+            <ChevronRight className="h-6 w-6" />
           </button>
+          
+          {/* Testimonial Progress Indicator */}
+          <div className="absolute bottom-6 left-0 right-0 flex justify-center items-center">
+            <div className="bg-white/10 h-1 w-32 rounded-full overflow-hidden">
+              <div 
+                className="bg-white h-full transition-all duration-300 ease-out"
+                style={{ width: `${((active + 1) / testimonials.length) * 100}%` }}
+              />
+            </div>
+            <span className="text-white/70 text-xs ml-3">
+              {active + 1}/{testimonials.length}
+            </span>
+          </div>
+          
           {/* Pills */}
           <div className="mt-8 flex justify-center gap-2">
             {testimonials.map((_, idx) => (

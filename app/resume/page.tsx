@@ -368,7 +368,7 @@ export default function Resume() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
           <div>
             <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-silver-300 to-white mb-2">Zainab Iqbal</h1>
-            <div className="text-lg text-silver-200 font-semibold mb-1">Senior Frontend Developer | React.js Expert | Next.js | Full-Stack Specialist</div>
+            <div className="text-lg text-silver-200 font-semibold mb-1">Frontend Developer | React.js Expert | Next.js | Full-Stack Specialist</div>
             <div className="text-silver-300 text-sm">
               zainabkhan3473@gmail.com | (+92) 311 0522349 | <a href="https://github.com/zainabkhan9118" className="underline text-silver-400 hover:text-white" target="_blank" rel="noopener noreferrer">GitHub: zainabkhan9118</a> | Abbottabad, Pakistan | DOB: 20 Jan 2002
             </div>

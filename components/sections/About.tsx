@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 import { Award, Code2, Users, Sparkles, Coffee, Zap } from "lucide-react";
 import { Typewriter } from "@/components/shared/Typewriter";
+import AboutThreeScene from "@/components/shared/AboutThreeScene";
 import {
   HoverCard,
   HoverCardContent,
@@ -25,6 +26,9 @@ export default function About() {
         <div className="absolute right-0 bottom-0 w-96 h-96 bg-white rounded-full opacity-10 blur-3xl"></div>
         <div className="absolute left-0 top-0 w-80 h-80 bg-silver-300 rounded-full opacity-10 blur-3xl"></div>
       </div>
+      
+      {/* Three.js Background Animation */}
+      <AboutThreeScene />
       
       {/* Add animation styles */}
       <style jsx global>{`

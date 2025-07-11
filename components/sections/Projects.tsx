@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ExternalLink, Github, Users, Star, CheckCircle } from "lucide-react";
+import { ExternalLink, Github, Users, Star, CheckCircle, ChevronRight, ChevronLeft } from "lucide-react";
 import { projects } from "@/data/projects";
 import { Badge } from "../ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
@@ -195,27 +195,35 @@ export default function Projects() {
           </div>
           
           {/* Navigation Arrows */}
+           {/* Navigation Arrows */}
           <button 
             onClick={prevProject} 
-            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-white/20 transition-colors border border-white/20 hover:border-white/50 z-10 shadow-lg"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-white/20 transition-colors border border-white/20 hover:border-white/50 z-10 shadow-lg hover-animate"
             aria-label="Previous project"
           >
-            <div className="relative w-5 h-5">
-              <div className="absolute w-full h-0.5 bg-white top-1/2 -translate-y-1/2 -translate-x-[15%] rotate-45"></div>
-              <div className="absolute w-full h-0.5 bg-white top-1/2 -translate-y-1/2 -translate-x-[15%] -rotate-45"></div>
-            </div>
+            <ChevronLeft className="h-6 w-6" />
           </button>
           
           <button 
             onClick={nextProject} 
-            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-white/20 transition-colors border border-white/20 hover:border-white/50 z-10 shadow-lg"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/50 backdrop-blur-sm text-white hover:bg-white/20 transition-colors border border-white/20 hover:border-white/50 z-10 shadow-lg hover-animate"
             aria-label="Next project"
           >
-            <div className="relative w-5 h-5">
-              <div className="absolute w-full h-0.5 bg-white top-1/2 -translate-y-1/2 translate-x-[15%] -rotate-45"></div>
-              <div className="absolute w-full h-0.5 bg-white top-1/2 -translate-y-1/2 translate-x-[15%] rotate-45"></div>
-            </div>
+            <ChevronRight className="h-6 w-6" />
           </button>
+          
+          {/* Project Progress Indicator */}
+          <div className="absolute bottom-6 left-0 right-0 flex justify-center items-center">
+            <div className="bg-white/10 h-1 w-32 rounded-full overflow-hidden">
+              <div 
+                className="bg-white h-full transition-all duration-300 ease-out"
+                style={{ width: `${((activeProject + 1) / projects.length) * 100}%` }}
+              />
+            </div>
+            <span className="text-white/70 text-xs ml-3">
+              {activeProject + 1}/{projects.length}
+            </span>
+          </div>
         </div>
         
         {/* View All Projects Button */}
