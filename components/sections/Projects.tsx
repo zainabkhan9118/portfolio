@@ -140,14 +140,6 @@ export default function Projects() {
                             <ExternalLink className="w-4 h-4 mr-2" />
                             View Live
                           </button>
-                          
-                          {/* <button 
-                            className="inline-flex items-center px-4 py-2.5 rounded-md bg-transparent text-white font-medium hover:bg-gray-800 transition-all duration-300 shadow-md hover:shadow-lg border border-silver-500/30 hover:border-white/50"
-                            onClick={() => window.open(project.github, '_blank', 'noopener,noreferrer')}
-                          >
-                            <Github className="w-4 h-4 mr-2" />
-                            Code
-                          </button> */}
                         </div>
                       </CardFooter>
                     </Card>
@@ -194,7 +186,6 @@ export default function Projects() {
             ))}
           </div>
           
-          {/* Navigation Arrows */}
            {/* Navigation Arrows */}
           <button 
             onClick={prevProject} 
@@ -212,18 +203,7 @@ export default function Projects() {
             <ChevronRight className="h-6 w-6" />
           </button>
           
-          {/* Project Progress Indicator */}
-          <div className="absolute bottom-6 left-0 right-0 flex justify-center items-center">
-            <div className="bg-white/10 h-1 w-32 rounded-full overflow-hidden">
-              <div 
-                className="bg-white h-full transition-all duration-300 ease-out"
-                style={{ width: `${((activeProject + 1) / projects.length) * 100}%` }}
-              />
-            </div>
-            <span className="text-white/70 text-xs ml-3">
-              {activeProject + 1}/{projects.length}
-            </span>
-          </div>
+          {/* Removing old progress indicator as it's now in the CardFooter */}
         </div>
         
         {/* View All Projects Button */}
