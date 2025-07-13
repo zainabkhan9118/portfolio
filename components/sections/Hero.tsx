@@ -224,7 +224,7 @@ export default function Hero() {
                   </span>
                 </h1>
                 <h2 className="text-xl md:text-3xl font-bold mb-4 relative">
-                  <span className="relative z-10 text-silver-200">Senior Frontend Developer & UI Specialist</span>
+                  <span className="relative z-10 text-silver-200">Frontend Developer & UI Specialist</span>
                   <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white/30"></span>
                 </h2>
                 <p className="text-white text-lg mb-4 max-w-xl leading-relaxed">
