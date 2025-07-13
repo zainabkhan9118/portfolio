@@ -13,7 +13,7 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto px-6 text-center">
         <p className="text-silver-400 text-sm">
-          &copy; {new Date().getFullYear()} Zainab Iqbal • Senior Frontend Developer
+          &copy; {new Date().getFullYear()} Zainab Iqbal • Frontend Developer
         </p>
         <p className="text-silver-500 text-xs mt-2">
           Built with Next.js, React and Tailwind CSS
