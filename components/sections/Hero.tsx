@@ -224,11 +224,11 @@ export default function Hero() {
                   </span>
                 </h1>
                 <h2 className="text-xl md:text-3xl font-bold mb-4 relative">
-                  <span className="relative z-10 text-silver-200">Frontend Developer & UI Specialist</span>
+                  <span className="relative z-10 text-silver-200">Full Stack Developer & Backend Specialist</span>
                   <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white/30"></span>
                 </h2>
                 <p className="text-white text-lg mb-4 max-w-xl leading-relaxed">
-                  I craft exceptional digital experiences with React, Next.js, and modern web technologies.
+                  I build scalable and high-performance applications with NestJS, Node.js, and modern backend technologies, seamlessly integrating with robust frontend solutions.
                 </p>
               </div>
               

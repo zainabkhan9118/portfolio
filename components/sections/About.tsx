@@ -196,11 +196,12 @@ export default function About() {
                 <span className="relative">
                   <Typewriter
                     text={
-                      `I'm a passionate Senior Frontend Developer with a love for creating beautiful, intuitive, and high-performing web applications that solve real-world problems.\n\n` +
-                      `With expertise in React, Next.js, and modern JavaScript, I transform complex requirements into elegant solutions. My background spans both frontend excellence and backend integration, allowing me to develop comprehensive full-stack applications.\n\n` +
-                      `Beyond coding, I'm deeply interested in UI/UX design principles, ensuring that technical implementations are not just functional but delightful to use. I believe in continuous learning and stay at the forefront of web development trends.\n\n` +
-                      `When I'm not crafting code, I enjoy exploring new technologies, contributing to open-source projects, and mentoring junior developers. Let's create something amazing together!`
+                      `I'm a dedicated Full Stack Developer specializing in building robust, scalable, and high-performance applications with a strong focus on backend technologies like NestJS and Node.js.\n\n` +
+                      `With expertise in NestJS, TypeScript, and modern backend architecture, I design and implement secure APIs, real-time features, and seamless integrations. My experience also spans frontend development with React and Next.js, enabling me to deliver complete end-to-end solutions.\n\n` +
+                      `Beyond code, I value clean architecture, maintainable systems, and performance optimization—ensuring every application is reliable, efficient, and future-proof. I’m also deeply committed to continuous learning, keeping pace with the latest in backend and cloud technologies.\n\n` +
+                      `When I’m not developing, you’ll find me exploring emerging frameworks, contributing to open-source projects, or mentoring aspiring developers. Let’s build something powerful and impactful together!`
                     }
+
                     delay={20}
                   />
                 </span>
