@@ -180,7 +180,7 @@ export default function Hero() {
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20">
                       <Image 
-                        src="/me.png" 
+                        src="/zainab.png" 
                         alt="Zainab Iqbal" 
                         width={48} 
                         height={48} 
