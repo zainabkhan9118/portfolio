@@ -157,7 +157,7 @@ export default function Hero() {
                   <div className="absolute inset-0 bg-black rounded-full"></div>
                   <div className="relative">
                     <Image 
-                      src="/me.png" 
+                      src="/zainab.png" 
                       alt="Zainab Iqbal" 
                       width={380} 
                       height={380} 
