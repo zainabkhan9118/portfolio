@@ -17,38 +17,25 @@ export const projects = [
     stats: { users: "50K+", rating: "4.9", reviews: "2.3K" },
     category: "Travel & Booking"
   },
-  {
-    title: "GigGives",
-    subtitle: "Equipment Rental Marketplace",
-    description: "Peer-to-peer equipment rental platform with geolocation services. Developed with Next.js and NestJS.",
-    features: [
-      "Real-time availability calendar and reservation system",
-      "Secure payment processing with Stripe integration",
-      "Rating and review system for trust management",
-      "Comprehensive admin dashboard for rental analytics"
-    ],
-    technologies: ["Next.js", "NestJS", "Stripe", "Geolocation API", "Firebase"],
-    link: "https://gig-gives.vercel.app/",
-    github: "https://github.com/zainabkhan9118/giggives",
-    stats: { users: "25K+", rating: "4.8", reviews: "1.8K" },
-    category: "Marketplace"
-  },
-  {
-    title: "Zara Schools",
-    subtitle: "E-Learning Platform",
-    description: "Scalable e-learning app developed with NestJS and Next.js, enabling instructors to manage courses and students to enroll, learn, and track progress.",
-    features: [
-      "Authentication and role-based access control",
-      "Course creation and management system",
-      "Student progress tracking",
-      "Fully responsive UI for all devices"
-    ],
-    technologies: ["Next.js", "NestJS", "PostgreSQL", "JWT", "Socket.io"],
-    link: "https://zara-school-nextjs-ashen.vercel.app/",
-    github: "https://github.com/zainabkhan9118/zara-schools",
-    stats: { users: "15K+", rating: "4.7", reviews: "900" },
-    category: "Education"
-  },
+{
+  title: "GigGives",
+  subtitle: "Team Collaboration & Task Management Platform",
+  description: "A real-time collaboration tool enabling teams to efficiently manage tasks and improve productivity through responsive dashboards and interactive task boards.",
+  problem: "Teams needed an efficient way to manage tasks and collaborate in real-time.",
+  solution: "Developed responsive, interactive dashboards and task boards with live updates; contributed to backend endpoints for role-based data handling.",
+  impact: "Boosted team productivity by 40% and enhanced project transparency across user roles.",
+  features: [
+    "Live task boards with drag-and-drop functionality",
+    "Role-based access control for secure data management",
+    "Real-time synchronization across devices",
+    "Performance analytics and team productivity insights"
+  ],
+  technologies: ["Next.js", "NestJS", "Firebase", "WebSockets", "Tailwind CSS"],
+  link: "https://gig-gives.vercel.app/",
+  github: "https://github.com/zainabkhan9118/giggives",
+  stats: { productivityBoost: "40%", teams: "200+", satisfaction: "4.8" },
+  category: "Collaboration"
+},
   {
     title: "Lemara Commercial",
     subtitle: "Real Estate Platform",
