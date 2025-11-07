@@ -196,10 +196,11 @@ export default function About() {
                 <span className="relative">
                   <Typewriter
                     text={
-                      `I'm a dedicated Full Stack Developer specializing in building robust, scalable, and high-performance applications with a strong focus on backend technologies like NestJS and Node.js.\n\n` +
-                      `With expertise in NestJS, TypeScript, and modern backend architecture, I design and implement secure APIs, real-time features, and seamless integrations. My experience also spans frontend development with React and Next.js, enabling me to deliver complete end-to-end solutions.\n\n` +
-                      `Beyond code, I value clean architecture, maintainable systems, and performance optimization—ensuring every application is reliable, efficient, and future-proof. I’m also deeply committed to continuous learning, keeping pace with the latest in backend and cloud technologies.\n\n` +
-                      `When I’m not developing, you’ll find me exploring emerging frameworks, contributing to open-source projects, or mentoring aspiring developers. Let’s build something powerful and impactful together!`
+                      `I'm Zainab Iqbal, a Frontend Developer | Web Engineer rooted in Abbottabad, Pakistan and driven by full-stack fundamentals and applied machine learning.\n\n` +
+                      `Frontend Developer (CGPA: 3.94/4.00) skilled in building responsive, high-performance web applications using React, Next.js, and TypeScript.\n\n` +
+                      `Experienced in developing modern, user-focused interfaces and collaborating on backend features using NestJS and REST APIs.\n\n` +
+                      `Strong foundation in web performance optimization, secure integrations, and accessibility, with hands-on experience applying machine learning models in web environments using TensorFlow and PyTorch to deliver intelligent, data-driven experiences.\n\n` +
+                      `Beyond the code editor, I love exploring emerging technologies, refining performance playbooks, and mentoring peers who want to build meaningful digital products.`
                     }
 
                     delay={20}

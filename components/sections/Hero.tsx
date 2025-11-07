@@ -189,24 +189,25 @@ export default function Hero() {
                     </div>
                     <div>
                       <h3 className="font-bold text-white">Zainab Iqbal</h3>
-                      <p className="text-silver-400 text-xs">Full-Stack Developer</p>
+                      <p className="text-silver-400 text-xs">Frontend Developer | Web Engineer</p>
                     </div>
                   </div>
                   
                   <div className="space-y-2 border-t border-white/10 pt-3">
                     <p className="text-sm text-silver-300">
-                      "I think in code and dream in designs. When I'm not building websites, you might find me solving puzzles or exploring new tech."
+                      "I build human-centered, high-performance interfaces and love bridging frontend polish with backend reliability and applied ML."
                     </p>
                     <div className="flex flex-wrap gap-1.5 mt-2">
                       <span className="text-xs bg-blue-500/20 text-blue-300 rounded-full px-2 py-0.5">React</span>
                       <span className="text-xs bg-purple-500/20 text-purple-300 rounded-full px-2 py-0.5">Next.js</span>
-                      <span className="text-xs bg-teal-500/20 text-teal-300 rounded-full px-2 py-0.5">Full-Stack</span>
+                      <span className="text-xs bg-emerald-500/20 text-emerald-300 rounded-full px-2 py-0.5">NestJS</span>
+                      <span className="text-xs bg-pink-500/20 text-pink-200 rounded-full px-2 py-0.5">TensorFlow</span>
                     </div>
                   </div>
                   
-                  <div className="text-xs text-silver-400 border-t border-white/10 pt-3">
-                    <span className="block mb-1">Fun fact: I wrote my first line of code when I was 12 years old!</span>
-                    <span className="block">Daily coffee intake: ☕☕☕</span>
+                  <div className="text-xs text-silver-400 border-t border-white/10 pt-3 space-y-1">
+                    <span className="block">Abbottabad, Pakistan</span>
+                    <span className="block">CGPA 3.94/4.00 · Applied ML Explorer</span>
                   </div>
                 </div>
               </HoverCardContent>
@@ -224,12 +225,16 @@ export default function Hero() {
                   </span>
                 </h1>
                 <h2 className="text-xl md:text-3xl font-bold mb-4 relative">
-                  <span className="relative z-10 text-silver-200">Full Stack Developer & Backend Specialist</span>
+                  <span className="relative z-10 text-silver-200">Frontend Developer | Web Engineer · Full-Stack Fundamentals & Applied ML</span>
                   <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white/30"></span>
                 </h2>
                 <p className="text-white text-lg mb-4 max-w-xl leading-relaxed">
-                  I build scalable and high-performance applications with NestJS, Node.js, and modern backend technologies, seamlessly integrating with robust frontend solutions.
+                  I craft responsive, high-performance web experiences with React, Next.js, and TypeScript, collaborate on NestJS-powered APIs, and bring ML-driven features to life with TensorFlow and PyTorch.
                 </p>
+                <div className="flex flex-wrap gap-4 text-sm text-silver-300 mb-6">
+                  <span className="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10">Abbottabad, Pakistan</span>
+                  <span className="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10">CGPA 3.94/4.00</span>
+                </div>
               </div>
               
               <div className="flex flex-wrap gap-4">
