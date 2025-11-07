@@ -238,11 +238,6 @@ export default function Hero() {
                     <Mail className="w-5 h-5 mr-2" /> Contact Me
                   </button>
                 </a>
-                <a href="/resume" target="_blank" rel="noopener noreferrer">
-                  <button className="btn-shine flex items-center px-8 py-4 bg-black text-white border border-white/30 rounded-md font-medium hover:bg-gray-900 transition-colors hover-animate">
-                    <Download className="w-5 h-5 mr-2" /> View & Download Resume
-                  </button>
-                </a>
                 <button
                   className="btn-shine flex items-center px-8 py-4 bg-gradient-to-r from-silver-700 to-silver-400 text-white rounded-md font-medium border border-white/30 hover:bg-silver-500 transition-colors hover-animate"
                   style={{ minWidth: 180 }}
