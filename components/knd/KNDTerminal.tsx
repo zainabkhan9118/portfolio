@@ -6,32 +6,15 @@ import { skills } from "@/data/skills";
 import { ExternalLink, Github, Mail, Linkedin, Phone, Terminal, Send, XCircle } from "lucide-react";
 import MatrixRain from "./MatrixRain";
 import SystemDiagnostics from "./SystemDiagnostics";
+import SpaceShooter from "./SpaceShooter";
 import { useTerminalSound } from "@/hooks/useTerminalSound";
+import { TESTIMONIALS } from "@/data/testimonials";
 
 type TerminalState = "BOOT" | "LOGIN" | "MENU" | "CONTENT";
 type ContentSection = "HERO" | "ABOUT" | "PROJECTS" | "SKILLS" | "CONTACT" | "TESTIMONIALS";
 type ThemeType = "GREEN" | "RED" | "AMBER" | "BLUE" | "PURPLE";
 
-const TESTIMONIALS = [
-    {
-        name: "COMMANDER SARAH",
-        role: "PROJECT LEAD",
-        text: "Zainab's ability to decode complex requirements into clean, efficient React components is unparalleled. A true asset to the agency.",
-        status: "VERIFIED"
-    },
-    {
-        name: "AGENT MIKE",
-        role: "BACKEND SPECIALIST",
-        text: "I've never seen front-end code this secure and performant. Integration was seamless.",
-        status: "ENCRYPTED"
-    },
-    {
-        name: "DIRECTOR CHEN",
-        role: "TECH DIRECTOR",
-        text: "Her work on the classified dashboard exceeded all parameters. Highly recommended for top-tier missions.",
-        status: "CLASSIFIED"
-    }
-];
+// (Static TESTIMONIALS array removed)
 
 export default function KNDTerminal() {
     const [state, setState] = useState<TerminalState>("BOOT");
@@ -56,11 +39,7 @@ export default function KNDTerminal() {
 
     // Minigame State
     const [showMinigame, setShowMinigame] = useState(false);
-    const [gameStatus, setGameStatus] = useState<"PLAYING" | "WON" | "LOST">("PLAYING");
-    const [barPos, setBarPos] = useState(0);
-    const [direction, setDirection] = useState(1);
-    const [targetPos, setTargetPos] = useState(50);
-    const gameRaf = useRef<number>(0);
+    // Old minigame states (barPos, gameStatus etc) are no longer needed here as they are internal to SpaceShooter
 
     // Audio Hook
     const { playHover, playClick, playType, playError, playSuccess } = useTerminalSound();
@@ -117,23 +96,7 @@ export default function KNDTerminal() {
         }
     }, [state]);
 
-    // MINIGAME LOOP
-    useEffect(() => {
-        if (!showMinigame || gameStatus !== "PLAYING") return;
-
-        const loop = () => {
-            setBarPos(prev => {
-                let next = prev + (1.5 * direction);
-                if (next >= 100) { setDirection(-1); return 100; }
-                if (next <= 0) { setDirection(1); return 0; }
-                return next;
-            });
-            gameRaf.current = requestAnimationFrame(loop);
-        };
-        gameRaf.current = requestAnimationFrame(loop);
-
-        return () => cancelAnimationFrame(gameRaf.current);
-    }, [showMinigame, gameStatus, direction]);
+    // (Old Minigame Loop Effect removed)
 
     const handleMenuSelect = (section: ContentSection) => {
         playClick();
@@ -141,25 +104,7 @@ export default function KNDTerminal() {
         setState("CONTENT");
     };
 
-    const handleMinigameAction = () => {
-        if (gameStatus !== "PLAYING") {
-            // Reset
-            setGameStatus("PLAYING");
-            setBarPos(0);
-            setTargetPos(20 + Math.random() * 60);
-            return;
-        }
-
-        // Check hit
-        if (Math.abs(barPos - targetPos) < 10) { // 10% tolerance
-            setGameStatus("WON");
-            playSuccess();
-            setCommandOutput(prev => [...prev, "> SIMULATION SUCCESS: SECRET SKILL UNLOCKED [CRYPTOGRAPHY]"]);
-        } else {
-            setGameStatus("LOST");
-            playError();
-        }
-    };
+    // (Old handleMinigameAction removed)
 
     const handleCommandSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -189,9 +134,7 @@ export default function KNDTerminal() {
                 break;
             case "START SIMULATION": case "HACK.EXE": case "GAME":
                 setShowMinigame(true);
-                setGameStatus("PLAYING");
-                setTargetPos(20 + Math.random() * 60);
-                response = "LAUNCHING BREACH PROTOCOL...";
+                response = "LAUNCHING DEFENSE PROTOCOL...";
                 break;
             case "WHOAMI": response = "YOU ARE A GUEST USER ACCESSING OPERATIVE ZAINAB'S TERMINAL."; break;
             case "DATE": response = new Date().toLocaleString(); break;
@@ -265,50 +208,12 @@ export default function KNDTerminal() {
             <div className="scanlines" />
             <div className="crt-flicker" />
 
-            {/* Minigame Overlay */}
+            {/* Space Shooter Minigame Overlay */}
             {showMinigame && (
-                <div
-                    className="absolute inset-0 z-50 bg-black/80 flex items-center justify-center backdrop-blur-sm animate-in fade-in"
-                    onClick={() => setShowMinigame(false)}
-                >
-                    <div
-                        className="bg-black border-2 border-primary p-8 max-w-md w-full text-center space-y-6 shadow-[0_0_50px_var(--primary)]"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <h3 className="text-2xl font-bold blink">&gt;&gt; BREACH PROTOCOL INITIATED</h3>
-
-                        <div className="h-64 relative bg-primary/10 border border-primary/50 overflow-hidden">
-                            {/* Target Zone */}
-                            <div
-                                className="absolute left-0 w-full bg-primary/30"
-                                style={{ top: `${targetPos}%`, height: '10%' }}
-                            />
-                            {/* Moving Bar */}
-                            <div
-                                className="absolute left-0 w-full h-2 bg-primary shadow-[0_0_10px_var(--primary)] transition-none"
-                                style={{ top: `${barPos}%` }}
-                            />
-                        </div>
-
-                        <div className="text-xl">
-                            {gameStatus === "PLAYING" && "PRESS [SPACE] TO LOCK"}
-                            {gameStatus === "WON" && <span className="text-green-500 font-bold">ACCESS GRANTED</span>}
-                            {gameStatus === "LOST" && <span className="text-red-500 font-bold">ACCESS DENIED</span>}
-                        </div>
-
-                        <button
-                            className="bg-primary text-black font-bold w-full py-4 text-xl hover:opacity-90 focus:outline-none"
-                            onClick={handleMinigameAction}
-                            autoFocus
-                        >
-                            {gameStatus === "PLAYING" ? "[LOCK SIGNAL]" : "[RETRY / RESET]"}
-                        </button>
-
-                        <button onClick={() => setShowMinigame(false)} className="absolute top-2 right-2 text-primary opacity-50 hover:opacity-100">
-                            <XCircle />
-                        </button>
-                    </div>
-                </div>
+                <SpaceShooter
+                    onClose={() => setShowMinigame(false)}
+                    primaryColor={themeStyles[theme].primary}
+                />
             )}
 
             {/* Main Container */}
@@ -377,6 +282,14 @@ export default function KNDTerminal() {
                                         <span className="text-lg md:text-2xl font-bold">{item.label}</span>
                                     </button>
                                 ))}
+                                {/* New Game Button */}
+                                <button
+                                    onClick={() => setShowMinigame(true)}
+                                    onMouseEnter={playHover}
+                                    className="group relative p-4 border-2 border-primary hover:bg-primary/20 transition-all text-left flex items-center shadow-[0_0_5px_rgba(74,246,38,0.1)] hover:shadow-[0_0_15px_rgba(74,246,38,0.4)] md:col-span-2 justify-center"
+                                >
+                                    <span className="text-lg md:text-2xl font-bold italic animate-pulse">[ LAUNCH DEFENSE SIMULATION ]</span>
+                                </button>
                             </div>
                         </div>
                     )}
