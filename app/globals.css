@@ -41,12 +41,31 @@
   --accent: #0f2e08;
   --accent-foreground: #4AF626;
   --destructive: #aa0000;
-  --border: #2d8a18;
   /* Darker green for borders */
   --input: #0f2e08;
   --ring: #4AF626;
   --radius: 0px;
   /* Blocky look */
+
+  /* Theme: RED ALERT */
+  --theme-red-primary: #ff3333;
+  --theme-red-bg: #1a0000;
+  --theme-red-muted: #4d0000;
+
+  /* Theme: AMBER RETRO */
+  --theme-amber-primary: #ffb000;
+  --theme-amber-bg: #1a1200;
+  --theme-amber-muted: #4d3600;
+
+  /* Theme: BLUE CYBER */
+  --theme-blue-primary: #00e5ff;
+  --theme-blue-bg: #001a1f;
+  --theme-blue-muted: #00334d;
+
+  /* Theme: PURPLE SYNTH */
+  --theme-purple-primary: #d500f9;
+  --theme-purple-bg: #1a001f;
+  --theme-purple-muted: #4d004d;
 }
 
 /* CRT Scanline Effect - Reduced opacity for readability */
@@ -64,23 +83,25 @@
   background-size: 100% 4px;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.6;
+  opacity: 0.15;
+  /* Reduced from 0.6 */
 }
 
 /* Reduced flicker for comfort */
 .crt-flicker {
-  animation: flicker 0.15s infinite;
+  animation: flicker 4s infinite;
+  /* Slowed down from 0.15s */
   pointer-events: none;
   position: fixed;
   inset: 0;
-  background: rgba(74, 246, 38, 0.015);
-  /* Reduced/Subtle tint */
+  background: rgba(74, 246, 38, 0.01);
+  /* Reduced alpha */
   z-index: 9998;
 }
 
 @keyframes flicker {
   0% {
-    opacity: 0.98;
+    opacity: 0.8;
   }
 
   50% {
@@ -88,7 +109,7 @@
   }
 
   100% {
-    opacity: 0.99;
+    opacity: 0.9;
   }
 }
 
