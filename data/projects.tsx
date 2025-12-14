@@ -33,7 +33,7 @@ export const projects = [
   technologies: ["Next.js", "NestJS", "Firebase", "WebSockets", "Tailwind CSS"],
   link: "https://gig-gives.vercel.app/",
   github: "https://github.com/zainabkhan9118/giggives",
-  stats: { productivityBoost: "40%", teams: "200+", satisfaction: "4.8" },
+  stats: { users: "10K+", rating: "4.5", reviews: "450" },
   category: "Collaboration"
 },
   {
@@ -46,7 +46,7 @@ export const projects = [
       "Role-based dashboards for agents and admins",
       "Secure backend with responsive frontend"
     ],
-    technologies: ["React", "NestJS", "PostgreSQL", "AWS S3", "Maps API"],
+    technologies: ["Next.js", "NestJS", "PostgreSQL", "AWS S3", "Maps API"],
     link: "https://lemara-commercial.vercel.app",
     github: "https://github.com/zainabkhan9118/lemara-commercial",
     stats: { users: "8K+", rating: "4.9", reviews: "450" },
@@ -62,7 +62,7 @@ export const projects = [
       "Transaction tracking and reporting",
       "Data visualization and insights"
     ],
-    technologies: ["React", "NestJS", "MongoDB", "Socket.io"],
+    technologies: ["Next.js", "NestJS", "MongoDB", "Socket.io"],
     link: "https://4rays.vercel.app",
     github: "https://github.com/zainabkhan9118/4rays",
     stats: { users: "2K+", rating: "4.6", reviews: "120" },
