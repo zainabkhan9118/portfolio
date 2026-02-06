@@ -574,8 +574,8 @@ const TerminalContact = ({ playHover, playClick }: { playHover: () => void, play
                 <a href="mailto:zainabiqbal653@gmail.com" onMouseEnter={playHover} onClick={playClick} className="flex items-center justify-center gap-3 px-6 py-4 bg-primary text-black font-bold text-lg md:text-xl hover:bg-white transition-colors">
                     <Mail /> EMAIL TRANSMISSION
                 </a>
-                <a href="tel:03431159190" onMouseEnter={playHover} onClick={playClick} className="flex items-center justify-center gap-3 px-6 py-4 border-2 border-primary text-primary font-bold text-lg md:text-xl hover:bg-primary/20 transition-colors">
-                    <Phone /> 0343-1159190
+                <a href="https://wa.me/971504486615" onMouseEnter={playHover} onClick={playClick} className="flex items-center justify-center gap-3 px-6 py-4 border-2 border-primary text-primary font-bold text-lg md:text-xl hover:bg-primary/20 transition-colors">
+                    <Phone /> +971 50 448 6615
                 </a>
                 <a href="https://github.com/zainabkhan9118" target="_blank" onMouseEnter={playHover} onClick={playClick} className="flex items-center justify-center gap-3 px-6 py-4 border-2 border-primary text-primary font-bold text-lg md:text-xl hover:bg-primary/20 transition-colors">
                     <Github /> GITHUB UPLINK

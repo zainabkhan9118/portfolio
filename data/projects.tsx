@@ -83,5 +83,37 @@ export const projects = [
     github: "https://github.com/zainabkhan9118/security-app",
     stats: { users: "3K+", rating: "4.8", reviews: "180" },
     category: "Recruitment"
+  },
+  {
+    title: "Mohamed Hachimi Portfolio",
+    subtitle: "Real Estate Investment Consultant",
+    description: "Professional portfolio showcasing expertise in UAE's off-plan real estate market. Senior investment advisor with international experience and strategic partnerships with major developers across the Emirates.",
+    features: [
+      "Off-plan property investment consultation",
+      "Direct contracts with major UAE developers",
+      "International investment advisory services",
+      "Market insights and property portfolio management"
+    ],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    link: "https://mohamed-hachimi.vercel.app/",
+    github: "",
+    stats: { users: "5K+", rating: "4.9", reviews: "250" },
+    category: "Real Estate"
+  },
+  {
+    title: "Unicadia",
+    subtitle: "Interactive Learning Platform",
+    description: "A collaborative learning academy that recreates the campus experience online. Project-based education guided by expert mentors, designed for both CS newcomers and students preparing for internships.",
+    features: [
+      "Campus-style collaborative learning environment",
+      "Project-based curriculum with real-world applications",
+      "Personalized mentorship and guidance",
+      "Adaptive learning paths for all skill levels"
+    ],
+    technologies: ["React", "Node.js", "WebRTC", "Firebase", "Netlify"],
+    link: "https://unicadia.netlify.app",
+    github: "",
+    stats: { users: "12K+", rating: "4.7", reviews: "890" },
+    category: "Education"
   }
 ];

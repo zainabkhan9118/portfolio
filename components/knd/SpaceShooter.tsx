@@ -39,7 +39,10 @@ export default function SpaceShooter({ onClose, primaryColor }: SpaceShooterProp
         score: 0,
         level: 1,
         isGameOver: false,
-        time: 0
+        time: 0,
+        touchX: null as number | null,
+        isTouching: false,
+        autoShoot: false
     });
 
     // Initialize Game (Canvas size & Stars)
@@ -144,12 +147,28 @@ export default function SpaceShooter({ onClose, primaryColor }: SpaceShooterProp
             ctx.globalAlpha = 1;
 
             // ... Game Logic ...
-            // Player Movement
+            // Player Movement (Keyboard)
             if (state.keys['ArrowLeft'] && state.player.x > 0) state.player.x -= state.player.speed;
             if (state.keys['ArrowRight'] && state.player.x < canvas.width - state.player.width) state.player.x += state.player.speed;
+            
+            // Player Movement (Touch/Mouse)
+            if (state.touchX !== null) {
+                const targetX = state.touchX - state.player.width / 2;
+                const diff = targetX - state.player.x;
+                const moveSpeed = 8; // Faster for touch
+                
+                if (Math.abs(diff) > moveSpeed) {
+                    state.player.x += Math.sign(diff) * moveSpeed;
+                } else {
+                    state.player.x = targetX;
+                }
+                
+                // Clamp position
+                state.player.x = Math.max(0, Math.min(canvas.width - state.player.width, state.player.x));
+            }
 
-            // Shooting
-            if (state.keys[' '] && Date.now() - state.lastShot > 250) {
+            // Shooting (Keyboard or Auto-shoot for touch)
+            if ((state.keys[' '] || (state.isTouching && state.autoShoot)) && Date.now() - state.lastShot > 250) {
                 state.bullets.push({
                     x: state.player.x + state.player.width / 2 - 2,
                     y: state.player.y,
@@ -275,6 +294,9 @@ export default function SpaceShooter({ onClose, primaryColor }: SpaceShooterProp
 
     // Input Listeners (Passive)
     useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
         const handleKeyDown = (e: KeyboardEvent) => {
             // Prevent scrolling with space
             if (e.key === ' ') e.preventDefault();
@@ -291,12 +313,66 @@ export default function SpaceShooter({ onClose, primaryColor }: SpaceShooterProp
             gameRef.current.keys[e.key] = false;
         };
 
+        // Touch/Mouse handlers
+        const handlePointerMove = (e: TouchEvent | MouseEvent) => {
+            if (gameState !== 'PLAYING') return;
+            
+            const rect = canvas.getBoundingClientRect();
+            const clientX = 'touches' in e ? e.touches[0]?.clientX : e.clientX;
+            
+            if (clientX !== undefined) {
+                const scaleX = canvas.width / rect.width;
+                gameRef.current.touchX = (clientX - rect.left) * scaleX;
+            }
+        };
+
+        const handlePointerStart = (e: TouchEvent | MouseEvent) => {
+            if (gameState === 'START' || gameState === 'GAME_OVER') {
+                startGame();
+                return;
+            }
+            
+            gameRef.current.isTouching = true;
+            gameRef.current.autoShoot = true;
+            handlePointerMove(e);
+        };
+
+        const handlePointerEnd = () => {
+            gameRef.current.isTouching = false;
+            gameRef.current.touchX = null;
+            gameRef.current.autoShoot = false;
+        };
+
+        // Keyboard
         window.addEventListener('keydown', handleKeyDown);
         window.addEventListener('keyup', handleKeyUp);
+        
+        // Touch events
+        canvas.addEventListener('touchstart', handlePointerStart, { passive: true });
+        canvas.addEventListener('touchmove', handlePointerMove, { passive: true });
+        canvas.addEventListener('touchend', handlePointerEnd, { passive: true });
+        canvas.addEventListener('touchcancel', handlePointerEnd, { passive: true });
+        
+        // Mouse events (for desktop)
+        canvas.addEventListener('mousedown', handlePointerStart);
+        canvas.addEventListener('mousemove', handlePointerMove);
+        canvas.addEventListener('mouseup', handlePointerEnd);
+        canvas.addEventListener('mouseleave', handlePointerEnd);
 
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
             window.removeEventListener('keyup', handleKeyUp);
+            
+            canvas.removeEventListener('touchstart', handlePointerStart as EventListener);
+            canvas.removeEventListener('touchmove', handlePointerMove as EventListener);
+            canvas.removeEventListener('touchend', handlePointerEnd);
+            canvas.removeEventListener('touchcancel', handlePointerEnd);
+            
+            canvas.removeEventListener('mousedown', handlePointerStart as EventListener);
+            canvas.removeEventListener('mousemove', handlePointerMove as EventListener);
+            canvas.removeEventListener('mouseup', handlePointerEnd);
+            canvas.removeEventListener('mouseleave', handlePointerEnd);
+            
             cancelAnimationFrame(gameRef.current.animationId);
         };
     }, [gameState]);
@@ -318,7 +394,8 @@ export default function SpaceShooter({ onClose, primaryColor }: SpaceShooterProp
                         <span className="flex items-center gap-2"><Target size={20} /> LVL {level}</span>
                     </div>
                     {/* Controls Hint */}
-                    <div className="text-sm opacity-50">ARROWS TO MOVE • SPACE TO SHOOT</div>
+                    <div className="text-sm opacity-50 hidden md:block">ARROWS TO MOVE • SPACE TO SHOOT</div>
+                    <div className="text-sm opacity-50 md:hidden">TAP & DRAG TO PLAY</div>
                     <button onClick={onClose} className="hover:text-red-500 transition-colors pointer-events-auto"><XCircle /></button>
                 </div>
 
